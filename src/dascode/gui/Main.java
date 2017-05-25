@@ -67,7 +67,8 @@ public class Main extends JFrame implements ActionListener {
         // Testing code
         Camera testCam;
         if (e.getSource() == menuadd) {
-            testCam = new Camera("yard", "http://192.168.1.100/IMAGE.JPG", IpCamMode.PULL, "test", "test");//TODO: remove test
+            testCam = new Camera("yard", "http://192.168.1.108/IMAGE.JPG", IpCamMode.PULL,
+                    "test", "test");//TODO: remove test
             cs.addCamera(testCam);
             System.out.println("Added");
         }

@@ -3,10 +3,12 @@ package dascode; /**
  */
 
 import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.ds.ipcam.IpCamAuth;
 import com.github.sarxos.webcam.ds.ipcam.IpCamDeviceRegistry;
 import com.github.sarxos.webcam.ds.ipcam.IpCamDriver;
 import com.github.sarxos.webcam.ds.ipcam.IpCamMode;
 
+import java.net.MalformedURLException;
 import java.util.List;
 
 public class Camera {
@@ -21,6 +23,11 @@ public class Camera {
         this.cameraName = cameraName;
         this.cameraUrl = cameraUrl;
         camMode = cameraMode;
+        try {
+            IpCamDeviceRegistry.register(this.cameraName, this.cameraUrl, this.camMode);
+        } catch (MalformedURLException e) {
+            e.printStackTrace(); //TODO: handel error
+        }
     }
 
     public Camera(String cameraName, String cameraUrl, IpCamMode cameraMode, String userName, String userPass) {
@@ -29,6 +36,12 @@ public class Camera {
         this.userName = userName;
         this.userPass = userPass;
         this.camMode = cameraMode;
+        IpCamAuth auth = new IpCamAuth(this.userName, this.userPass);
+        try {
+            IpCamDeviceRegistry.register(this.cameraName, this.cameraUrl, this.camMode, auth);
+        } catch (MalformedURLException e) {
+            e.printStackTrace(); //TODO: handel error
+        }
     }
 
     public static Webcam getCamByName(String name) {
