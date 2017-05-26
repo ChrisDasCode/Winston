@@ -53,7 +53,7 @@ public class Camera {
     }
 
     public static void Remove(Camera toRemove) {
-        IpCamDeviceRegistry.unregister(toRemove.cameraName);
+        IpCamDeviceRegistry.unregister(toRemove.getCameraName());
     }
 
     public static void RemoveAll() {

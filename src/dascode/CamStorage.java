@@ -18,12 +18,22 @@ public class CamStorage {
         this.cams = cams;
     }
 
+    public Camera getCamByName(String name) {
+        for (Object cam : cams.toArray()) {
+            if (cam.equals(name)) {
+                return (Camera) cam;
+            }
+        }
+
+        return null;
+    }
     public void addCamera(Camera cam) {
         cams.add(cam);
     }
 
     public void removeCamera(Camera cam) {
         cams.remove(cam);
+        Camera.Remove(cam);
 
     }
 
